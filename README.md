@@ -40,16 +40,19 @@ Also be sure to check out other [Free & Open Source Gatsby Themes](https://theme
 
 ### 1. **Create a Gatsby site.**
 
-Use the Gatsby CLI to clone the site and install dependencies:
+Use `git` to clone the site and navigate into it:
 
 ```sh
-npx gatsby new gatsby-starter-portfolio-cara https://github.com/LekoArts/gatsby-starter-portfolio-cara
+git clone https://github.com/LekoArts/gatsby-starter-portfolio-cara project-name
+cd project-name
 ```
 
-### 2. **Navigate to your new project.**
+### 2. **Install dependencies.**
+
+If you use npm 7 or above use the `--legacy-peer-deps` flag. If you use npm 6 you can use `npm install`.
 
 ```sh
-cd gatsby-starter-portfolio-cara
+npm install --legacy-peer-deps
 ```
 
 ### 3. **Open the code and start customizing!**
