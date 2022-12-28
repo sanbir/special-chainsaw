@@ -1,32 +1,38 @@
 /** @jsx jsx */
 import { jsx } from "theme-ui"
-import {useState} from "react";
-import { Flex, Box, Select, Grid, Image, Button } from "@theme-ui/components"
+import { Flex, Grid, Image, Button } from "@theme-ui/components"
 import ContestCard from "./ContestCard";
 import {LargeText} from "./LargeText";
 
-const SoloWinner = () => {
+const CustomContestCard = ({ countdown, prizeInKUSD, contestType, gradientStart, gradientEnd, imageUrl }: {
+    countdown: string
+    prizeInKUSD: number
+    contestType: string
+    gradientStart: string
+    gradientEnd: string
+    imageUrl: string
+}) => {
     return (
-        <ContestCard bg="linear-gradient(to right, #D4145A 0%, #FBB03B 100%)">
+        <ContestCard bg={`linear-gradient(to right, ${gradientStart} 0%, ${gradientEnd} 100%)`}>
             <Grid sx={{gridTemplateColumns: '1fr 2fr 1fr'}}>
-                <Image src="1.png"/>
+                <Image src={imageUrl}/>
                 <Flex sx={{flexDirection: 'column', gap: '1rem'}}>
                     <LargeText>
-                        03:25:26
+                        {countdown}
                     </LargeText>
                     <LargeText>
-                        Prize: 10K USD
+                        Prize: {prizeInKUSD}K USD
                     </LargeText>
                     <Button sx={{width: 'fit-content'}}>
                         Guess Now
                     </Button>
                 </Flex>
                 <LargeText>
-                    Solo Winner
+                    {contestType}
                 </LargeText>
             </Grid>
         </ContestCard>
     )
 }
 
-export default SoloWinner
+export default CustomContestCard
