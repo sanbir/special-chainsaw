@@ -1,10 +1,14 @@
 /** @jsx jsx */
 import { jsx } from "theme-ui"
-import CustomContestCard from "./CustomContestCard";
+import CustomContestCard from "../CustomContestCard";
+import Countdown from "../Countdown";
+import {getPeriod} from "../../utils/getPeriod";
 
 const Card2 = () => (
     <CustomContestCard contestType="Solo Winner"
-                       countdown="5d"
+                       countdown={
+                           <Countdown tag="2" period={getPeriod(5)}/>
+                       }
                        prizeInKUSD={5}
                        gradientStart="#662D8C"
                        gradientEnd="#ED1E79"

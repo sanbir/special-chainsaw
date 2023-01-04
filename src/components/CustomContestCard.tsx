@@ -5,7 +5,7 @@ import ContestCard from "./ContestCard";
 import {LargeText} from "./LargeText";
 
 const CustomContestCard = ({ countdown, prizeInKUSD, contestType, gradientStart, gradientEnd, imageUrl }: {
-    countdown: string
+    countdown: JSX.Element
     prizeInKUSD: number
     contestType: string
     gradientStart: string
