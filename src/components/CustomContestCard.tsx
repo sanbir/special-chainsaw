@@ -3,6 +3,8 @@ import { jsx } from "theme-ui"
 import { Flex, Grid, Image, Button } from "@theme-ui/components"
 import ContestCard from "./ContestCard";
 import {LargeText} from "./LargeText";
+import Popup from 'reactjs-popup';
+import {PickALuckyOptionPopup} from "./PickALuckyOptionPopup";
 
 const CustomContestCard = ({ countdown, prizeInKUSD, contestType, gradientStart, gradientEnd, imageUrl }: {
     countdown: JSX.Element
@@ -23,9 +25,14 @@ const CustomContestCard = ({ countdown, prizeInKUSD, contestType, gradientStart,
                     <LargeText>
                         Prize: {prizeInKUSD}K USD
                     </LargeText>
-                    <Button sx={{width: 'fit-content'}}>
-                        Guess Now
-                    </Button>
+
+                    <Popup trigger={
+                        <Button sx={{width: 'fit-content'}}>
+                            Guess Now
+                        </Button>
+                    } position="right center">
+                        <PickALuckyOptionPopup/>
+                    </Popup>
                 </Flex>
                 <LargeText>
                     {contestType}
