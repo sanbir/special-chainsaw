@@ -31,7 +31,7 @@ const CustomContestCard = ({ countdown, prizeInKUSD, contestType, gradientStart,
                             Guess Now
                         </Button>
                     } position="right center">
-                        <PickALuckyOptionPopup/>
+                        <PickALuckyOptionPopup prizeInKUSD={prizeInKUSD}/>
                     </Popup>
                 </Flex>
                 <LargeText>

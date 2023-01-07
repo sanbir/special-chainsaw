@@ -1,8 +1,16 @@
 /** @jsx jsx */
 import { jsx } from "theme-ui"
 import { Card, Flex, Radio, Label, Slider, Button, Box } from 'theme-ui'
+import {useState} from "react";
+import Popup from "reactjs-popup";
+import {ConfirmPopup} from "./ConfirmPopup";
 
-export const PickALuckyOptionPopup = () => {
+export const PickALuckyOptionPopup = ({prizeInKUSD}:{
+    prizeInKUSD: number
+}) => {
+    const [totalEntries, setTotalEntries] = useState(1);
+    const [choiceSelected, setChoiceSelected] = useState<'Day' | 'Night'>('Day')
+
     return (
         <div sx={{
             width: `100%`,
@@ -25,32 +33,72 @@ export const PickALuckyOptionPopup = () => {
             <div sx={{ opacity: 0.85, textShadow: `0 2px 10px rgba(0, 0, 0, 0.3)` }}>
                 <Flex sx={{flexDirection: 'column', alignItems: 'center', gap: '1rem'}}>
                     <div>Pick a lucky option</div>
-                    <Flex>
+                    <Flex sx={{gap:'1rem'}}>
                         <Label>
                             <Radio
                                 name='lucky-option'
-                                value='true'
-                                defaultChecked={true}
+                                value='Day'
+                                checked={choiceSelected === 'Day'}
+                                onClick={() => setChoiceSelected('Day')}
                             />
                             Day
                         </Label>
                         <Label>
                             <Radio
                                 name='lucky-option'
-                                value='false'
+                                value='Night'
+                                checked={choiceSelected === 'Night'}
+                                onClick={() => setChoiceSelected('Night')}
                             />
                             Night
                         </Label>
                     </Flex>
                     <Flex>
-                        <Box sx={{whiteSpace: 'nowrap', width: '300px'}}>Total contest entries</Box>
-                        <Slider sx={{appearance: 'auto'}} defaultValue={10} />
+                        <Box sx={{whiteSpace: 'nowrap', width: '300px'}}>
+                            Total contest entries
+                        </Box>
+                        <Flex sx={{flexDirection: 'column', width: '100%'}}>
+                            <Slider sx={{appearance: 'auto'}}
+                                    value={totalEntries}
+                                    onChange={e => setTotalEntries(Number(e.target.value))}
+                                    min={1}
+                                    max={10}
+                                    step={1} />
+                            <Flex sx={{justifyContent: 'space-between'}}>
+                                <Label>1</Label>
+                                <Label sx={{width: 'fit-content'}}>10</Label>
+                            </Flex>
+                        </Flex>
                     </Flex>
-                    <Button sx={{width: 'fit-content'}}>
-                        Confirm
-                    </Button>
+
+                    <Popup trigger={
+                                <Button sx={{width: 'fit-content'}}>
+                                    Confirm
+                                </Button>
+                            }
+                           position="right center">
+
+                        <ConfirmPopup choiceSelected={choiceSelected}
+                                      totalEntries={totalEntries}
+                                      totalCredit={prizeToCredit(prizeInKUSD) * totalEntries}/>
+                    </Popup>
                 </Flex>
             </div>
         </div>
     )
+}
+
+function prizeToCredit(prizeInKUSD: number) {
+    switch (prizeInKUSD) {
+        case 1:
+            return 2;
+        case 2:
+            return 5;
+        case 5:
+            return 10;
+        case 10:
+            return 10;
+        default:
+            return 1;
+    }
 }
