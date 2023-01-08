@@ -6,13 +6,14 @@ import {LargeText} from "./LargeText";
 import Popup from 'reactjs-popup';
 import {PickALuckyOptionPopup} from "./PickALuckyOptionPopup";
 
-const CustomContestCard = ({ countdown, prizeInKUSD, contestType, gradientStart, gradientEnd, imageUrl }: {
+const CustomContestCard = ({ countdown, prizeInKUSD, contestType, gradientStart, gradientEnd, imageUrl, choices }: {
     countdown: JSX.Element
     prizeInKUSD: number
     contestType: string
     gradientStart: string
     gradientEnd: string
     imageUrl: string
+    choices: string[]
 }) => {
     return (
         <ContestCard bg={`linear-gradient(to right, ${gradientStart} 0%, ${gradientEnd} 100%)`}>
@@ -31,7 +32,8 @@ const CustomContestCard = ({ countdown, prizeInKUSD, contestType, gradientStart,
                             Guess Now
                         </Button>
                     } position="right center">
-                        <PickALuckyOptionPopup prizeInKUSD={prizeInKUSD}/>
+                        <PickALuckyOptionPopup prizeInKUSD={prizeInKUSD}
+                                               choices={choices}/>
                     </Popup>
                 </Flex>
                 <LargeText>

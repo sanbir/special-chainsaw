@@ -30,15 +30,15 @@ export const ConfirmPopup = ({choiceSelected, totalEntries, totalCredit}:{
 
             <div sx={{ opacity: 0.85, textShadow: `0 2px 10px rgba(0, 0, 0, 0.3)` }}>
                 <Flex sx={{flexDirection: 'column', alignItems: 'center', gap: '1rem'}}>
-                    <Flex sx={{alignItems: 'center'}}>
+                    <Flex sx={{alignItems: 'center', gap: '1rem'}}>
                         <Label>Choice selected:</Label>
                         <Label>{choiceSelected}</Label>
                     </Flex>
-                    <Flex sx={{alignItems: 'center'}}>
+                    <Flex sx={{alignItems: 'center', gap: '1rem'}}>
                         <Label>Total entries:</Label>
                         <Label>{totalEntries}</Label>
                     </Flex>
-                    <Flex sx={{alignItems: 'center'}}>
+                    <Flex sx={{alignItems: 'center', gap: '1rem'}}>
                         <Label>Total credit:</Label>
                         <Label>{totalCredit}</Label>
                     </Flex>

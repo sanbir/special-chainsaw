@@ -5,11 +5,12 @@ import {useState} from "react";
 import Popup from "reactjs-popup";
 import {ConfirmPopup} from "./ConfirmPopup";
 
-export const PickALuckyOptionPopup = ({prizeInKUSD}:{
+export const PickALuckyOptionPopup = ({prizeInKUSD, choices}:{
     prizeInKUSD: number
+    choices: string[]
 }) => {
     const [totalEntries, setTotalEntries] = useState(1);
-    const [choiceSelected, setChoiceSelected] = useState<'Day' | 'Night'>('Day')
+    const [choiceSelected, setChoiceSelected] = useState(choices[0])
 
     return (
         <div sx={{
@@ -34,24 +35,18 @@ export const PickALuckyOptionPopup = ({prizeInKUSD}:{
                 <Flex sx={{flexDirection: 'column', alignItems: 'center', gap: '1rem'}}>
                     <div>Pick a lucky option</div>
                     <Flex sx={{gap:'1rem'}}>
-                        <Label>
-                            <Radio
-                                name='lucky-option'
-                                value='Day'
-                                checked={choiceSelected === 'Day'}
-                                onClick={() => setChoiceSelected('Day')}
-                            />
-                            Day
-                        </Label>
-                        <Label>
-                            <Radio
-                                name='lucky-option'
-                                value='Night'
-                                checked={choiceSelected === 'Night'}
-                                onClick={() => setChoiceSelected('Night')}
-                            />
-                            Night
-                        </Label>
+                        {choices.map(ch => (
+                            <Label>
+                                <Radio
+                                    name='lucky-option'
+                                    value={ch}
+                                    checked={choiceSelected === ch}
+                                    onClick={() => setChoiceSelected(ch)}
+                                />
+                                {ch}
+                            </Label>
+                        ))
+                        }
                     </Flex>
                     <Flex>
                         <Box sx={{whiteSpace: 'nowrap', width: '300px'}}>
